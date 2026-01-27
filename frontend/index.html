@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>yojanadharsh</title>
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <style>
+      /* Hide Rocket.new floating badge and overlays when present */
+      [class*="rocket"],
+      [id*="rocket"],
+      a[href*="rocket.new"],
+      img[src*="rocket.new"] {
+        display: none !important;
+        visibility: hidden !important;
+      }
+
+      button:has(> div:last-child > div:last-child),
+      div[style*="z-index: 2147483647;"] {
+        display: none !important;
+        visibility: hidden !important;
+      }
+
+      div[style*="position: fixed;"][style*="bottom:"] {
+        display: none !important;
+      }
+    </style>
+
+    <!-- Optional Rocket.new analytics/scripts (safe to keep, ignored if not configured) -->
+    <script
+      type="module"
+      async
+      src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fyojanadhar6008back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.16"
+    ></script>
+    <script
+      type="module"
+      defer
+      src="https://static.rocket.new/rocket-shot.js?v=0.0.2"
+    ></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
