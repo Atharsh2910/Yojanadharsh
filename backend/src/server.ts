@@ -1,7 +1,8 @@
-import express from 'express';
-import cors from 'cors';
-import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const supabase = require('./lib/supabaseClient');
+import { Request, Response } from 'express';
 
 dotenv.config();
 
@@ -9,13 +10,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
 // Matching algorithm for grassroots enterprises [cite: 106]
-app.post('/api/match-schemes', async (req, res) => {
+app.post('/api/match-schemes', async (req: Request, res: Response) => {
   const { businessType, sector, state } = req.body;
 
   const { data, error } = await supabase
