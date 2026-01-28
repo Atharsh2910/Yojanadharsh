@@ -1,28 +1,22 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec node --loader ts-node/esm src/server.ts"
+    "dev": "nodemon --exec \"node --env-file=.env --loader ts-node/esm\" src/server.ts",
+    "build": "tsc",
+    "start": "node --env-file=.env dist/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@supabase/supabase-js": "^2.93.1",
-    "cors": "^2.8.6",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1"
+    "@supabase/supabase-js": "^2.39.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/node": "^25.0.10",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
     "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.4.5"
   }
 }
-

@@ -1,28 +1,27 @@
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const supabase = require('./lib/supabaseClient');
-import { Request, Response } from 'express';
-
-dotenv.config();
+import express, { Request, Response } from 'express';
+import cors from 'cors';
+import supabase from './lib/supabaseClient.js';
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(cors());
 app.use(express.json());
 
-// Matching algorithm for grassroots enterprises [cite: 106]
-app.post('/api/match-schemes', async (req: Request, res: Response) => {
-  const { businessType, sector, state } = req.body;
-
-  const { data, error } = await supabase
-    .from('schemes')
-    .select('*')
-    .eq('sector', sector)
-    .contains('eligibility_tags', [businessType]);
-
-  if (error) return res.status(500).json({ error: error.message });
-  res.json({ schemes: data, count: data?.length });
+app.get('/', (_req: Request, res: Response) => {
+  res.send('Yojanadharsh Backend is running 🚀');
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Yojanadharsh Backend Active on Port ${PORT}`));
+app.get('/schemes', async (_req: Request, res: Response) => {
+  const { data, error } = await supabase.from('schemes').select('*');
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  res.json(data);
+});
+
+app.listen(PORT, () => {
+  console.log(` Server running on http://localhost:${PORT}`);
+});
